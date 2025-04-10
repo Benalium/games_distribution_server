@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  login    String @unique
+  name     String
+  email    String @unique
+  password String
+  role     Int
+
+  // Connections //
+
+  orders Order[] @relation("UserOrders")
+}
+
+model Order {
+  id            Int     @id @default(autoincrement())
+  userId        Int // Foreign key для User
+  paymentMethod String
+  dateTime      String
+  amount        Float
+  status        Boolean
+
+  // Connections //
+
+  user  User        @relation("UserOrders", fields: [userId], references: [id])
+  items ItemOrder[] @relation("OrderItems")
+}
+
+model Product {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  genre       String
+  platform    String
+  publisher   String
+  image       String
+  price       Float
+  quantity    Int
+
+  // Connections //
+
+  orderItems ItemOrder[] @relation("ProductItems")
+}
+
+model ItemOrder {
+  productId Int // Foreign key для Product
+  orderId   Int // Foreign key для Order
+  quantity  BigInt
+
+  // Connections //
+
+  product Product @relation("ProductItems", fields: [productId], references: [id])
+  order   Order   @relation("OrderItems", fields: [orderId], references: [id])
+
+  // Комбинированный первичный ключ
+  @@id([productId, orderId])
+}

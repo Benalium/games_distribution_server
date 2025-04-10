@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "1",
+    "description": "",
+    "platform": "",
+    "publisher": "",
+    "imageUrl": ""
+  },
+  {
+    "id": 2,
+    "name": "1",
+    "description": "",
+    "platform": "",
+    "publisher": "",
+    "imageUrl": ""
+  },
+  {
+    "name": "1",
+    "description": "",
+    "platform": "",
+    "publisher": "",
+    "imageUrl": ""
+  },
+  {
+    "name": "2",
+    "description": "",
+    "platform": "",
+    "publisher": "",
+    "imageUrl": "",
+    "price": "22"
+  },
+  {
+    "name": "1",
+    "description": "",
+    "platform": "",
+    "publisher": "",
+    "imageUrl": "",
+    "price": "28"
+  }
+]

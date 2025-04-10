@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // Устанавливает таргет для компиляции в ES6
+    "module": "ESNext", // Используется для Node.js
+    "outDir": "./dist", // Папка для скомпилированных файлов
+    "esModuleInterop": true, // Для поддержки импорта по умолчанию
+    "moduleResolution": "Node",
+    "strict": true,
+    "skipLibCheck": true, // Пропуск проверки библиотек
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "*": [
+        "./node_modules/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
