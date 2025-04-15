@@ -1,7 +1,9 @@
 import cors from 'cors'
 import express from 'express'
 import { PrismaClient } from '@prisma/client';
-import { deleteProduct, addProduct, addUser } from './script';
+import { deleteProduct, addProduct } from './script';
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -22,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.post("/login", async (req, res) => {
   console.log("Received:", req.body);
+  console.log("DB URL:", process.env.DATABASE_URL)
   const { login, password } = req.body;
   const user = await prisma.user.findUnique({
     where: { login },
@@ -36,7 +39,7 @@ app.post("/login", async (req, res) => {
   console.log('Respond:', user)
   res.json({
     user: user,
-    redirect: '/products'
+    redirect: `http://localhost:5173/products`
   });
 });
 
